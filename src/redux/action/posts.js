@@ -10,10 +10,12 @@ export const getPosts = () => async (dispatch) => {
 };
 
 export const createPost = (post) => async (dispatch) => {
+  console.log("create post in action :", post);
   try {
     const { data } = await api.createPost(post);
+    console.log("response data from ourBackEnd :", data);
     dispatch({ type: "CREATE", payload: data });
   } catch (err) {
-    console.log("Error in createPost");
+    console.log("Error in createPost", err);
   }
 };
