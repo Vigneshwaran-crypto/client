@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import useStyles from "./style";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../redux/action/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, getPosts } from "../../redux/action/posts";
 const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const fullStore = useSelector((store) => store);
 
   const [postData, setPostData] = useState({
     creator: "",
@@ -16,9 +18,13 @@ const Form = () => {
     selectedFile: "",
   });
 
-  const onHandleSubmit = (e) => {
-    console.log("onHandleSubmit clicking :");
+  useEffect(() => {
+    console.log("all store values in form :", fullStore);
 
+    dispatch(getPosts());
+  }, []);
+
+  const onHandleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(createPost(postData));
