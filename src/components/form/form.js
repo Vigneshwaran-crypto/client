@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import useStyles from "./style";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost, getPosts } from "../../redux/action/posts";
+import { createPost, getPosts } from "../../redux/action/action";
 const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const Form = () => {
           }
           className={classes.textInput}
         />
-        <TextField
+        <TextField //textInput
           name="title"
           variant="outlined"
           label="title"
